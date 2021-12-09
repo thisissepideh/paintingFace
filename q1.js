@@ -1,40 +1,49 @@
-const centerFace = {
-  x: 400,
-  y: 250,
-};
+function FaceFactory(centerx, centery, radius) {
+  return {
+    center: { x: centerx, y: centery },
+    radius: radius,
+    draw() {
+      drawCircle(this.center, this.radius);
+    },
+  };
+}
 
-const leftEye = {
-  x: 310,
-  y: 220,
-};
+function eyeFactory(centerx, centery, radius) {
+  return {
+    center: { x: centerx, y: centery },
+    radius: radius,
+    draw() {
+      drawCircle(this.center, this.radius);
+    },
+  };
+}
 
-const rightEye = {
-  x: 490,
-  y: 220,
-};
+function noseFactory(startx, starty, endx, endy) {
+  return {
+    start: { x: startx, y: starty },
+    end: { x: endx, y: endy },
+    draw() {
+      drawLine(this.start, this.end);
+    },
+  };
+}
 
-const startNose = {
-  x: 400,
-  y: 220,
-};
+function mouthFactory(startx, starty, endx, endy) {
+  return {
+    start: { x: startx, y: starty },
+    end: { x: endx, y: endy },
+    draw() {
+      drawLine(this.start, this.end);
+    },
+  };
+}
 
-const endNose = {
-  x: 400,
-  y: 280,
-};
+FaceFactory(400, 250, 200).draw();
 
-const startMouth = {
-  x: 340,
-  y: 350,
-};
+eyeFactory(310, 220, 5).draw();
 
-const endMouth = {
-  x: 460,
-  y: 350,
-};
+eyeFactory(490, 220, 5).draw();
 
-drawCircle(centerFace, 200);
-drawCircle(leftEye, 5);
-drawCircle(rightEye, 5);
-drawLine(startNose, endNose);
-drawLine(startMouth, endMouth);
+noseFactory(400, 220, 400, 280).draw();
+
+mouthFactory(340, 350, 460, 350).draw();
